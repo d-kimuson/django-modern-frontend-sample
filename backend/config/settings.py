@@ -123,6 +123,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     BASE_DIR.parent / 'frontend' / 'dist',
 )
+STATIC_ROOT = BASE_DIR / 'static'
 
 WEBPACK_LOADER = {
     'DEFAULT': {

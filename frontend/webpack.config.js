@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { merge } = require('webpack-merge');
 const BundleTracker = require('webpack-bundle-tracker');
 
@@ -10,7 +11,7 @@ for (const fileName of require('fs').readdirSync(path.resolve(__dirname, 'static
 const baseConfig = {
   entry: entries,
   output: {
-    filename: '[name].[hash].bundle.js',
+    filename: 'js/[name].[hash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/static/'
   },
@@ -18,6 +19,9 @@ const baseConfig = {
     new BundleTracker({
       path: __dirname,
       filename: 'webpack-stats.json',
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[hash].bundle.css'
     }),
   ],
   optimization: {
@@ -35,7 +39,14 @@ const baseConfig = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader'
+          },
+        ],
       },
     ],
   },
@@ -49,6 +60,9 @@ const devConfig = merge(baseConfig, {
   devServer: {
     port: 3000,
     hot: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*"  // For hot reload
+    },
     watchOptions: {
       ignored: /node_modules/
     },
