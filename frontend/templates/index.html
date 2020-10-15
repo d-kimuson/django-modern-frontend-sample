@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
+{% load render_bundle from webpack_loader %}
+
 {% block title %}Index{% endblock %}
 
 {% block content %}
 <section>
   <h1 class="target">This is Index Page!</h1>
 </section>
+{% endblock %}
+
+{% block external_footer %}
+{% render_bundle 'index' 'js' %}
 {% endblock %}

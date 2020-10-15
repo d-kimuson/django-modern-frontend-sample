@@ -2,10 +2,13 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const BundleTracker = require('webpack-bundle-tracker');
 
+const entries = {}
+for (const fileName of require('fs').readdirSync(path.resolve(__dirname, 'static', 'entries'))) {
+  entries[fileName.split('.')[0]] = `./static/entries/${fileName}`
+}
+
 const baseConfig = {
-  entry: {
-    base: './static/entries/base.js',
-  },
+  entry: entries,
   output: {
     filename: '[name].[hash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
