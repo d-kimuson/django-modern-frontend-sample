@@ -1,4 +1,8 @@
 {
+  "name": "django-modern-front-sample",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.4.1",
