@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    // frontend
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    // backend
+    "ms-python.vscode-pylance",
+  ]
+}
