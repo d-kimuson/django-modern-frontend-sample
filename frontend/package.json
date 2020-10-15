@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "css-loader": "^5.0.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.1.0",
+    "webpack-bundle-tracker": "0",
+    "webpack-cli": "3",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.2.0"
+  },
+  "scripts": {
+    "build": "webpack --mode=production",
+    "dev": "webpack-dev-server --mode=development"
+  }
+}
