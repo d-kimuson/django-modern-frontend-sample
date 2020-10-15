@@ -1,0 +1,9 @@
+{
+    "editor.tabSize": 2,
+    // python
+    "[python]": {
+        "editor.tabSize": 4
+    },
+    "python.venvPath": "backend/.venv",
+    "python.pythonPath": "${workspaceFolder}/backend/.venv/bin/python",
+}
