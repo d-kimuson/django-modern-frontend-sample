@@ -1,5 +1,8 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const StyleLintPlugin = require('stylelint-webpack-plugin')
 const { merge } = require('webpack-merge');
 const BundleTracker = require('webpack-bundle-tracker');
 
@@ -23,6 +26,11 @@ const baseConfig = {
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].bundle.css'
     }),
+    new StyleLintPlugin({
+      files: ['static/styles/**/*.scss'],
+      syntax: 'scss',
+      fix: false
+    }),
   ],
   optimization: {
     splitChunks: {
@@ -38,13 +46,52 @@ const baseConfig = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(ts|tsx)$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: false,
+            },
+          },
+          {
+            loader: 'eslint-loader',
+            options: {
+              enforce: 'pre',
+              configFile: path.resolve(__dirname, '.eslintrc.js'),
+              cache: false,
+              fix: false,
+            },
+          },
+        ],
+      },
+      {
+        test: /.(scss|css)$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
           },
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
+
+            options: {
+              sourceMap: false,
+              importLoaders: 2,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+          },
+          {
+            loader: 'sass-loader',
+
+            options: {
+              sourceMap: false,
+              implementation: require('sass'),
+              sassOptions: {
+                fiber: require('fibers'),
+              },
+            },
           },
         ],
       },
@@ -80,6 +127,21 @@ const devConfig = merge(baseConfig, {
 
 const productConfig = merge(baseConfig, {
   mode: 'production',
+  plugins: [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ["**/*"]
+    }),
+  ],
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          extractComments: 'all',
+          compress: { drop_console: true }
+        }
+      }),
+    ]
+  }
 })
 
 module.exports = (env, options) => {

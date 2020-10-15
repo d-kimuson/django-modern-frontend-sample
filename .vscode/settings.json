@@ -6,4 +6,29 @@
     },
     "python.venvPath": "backend/.venv",
     "python.pythonPath": "${workspaceFolder}/backend/.venv/bin/python",
+      // TypeScript & JavaScript
+  // ESLint
+  "eslint.workingDirectories": [
+    "./frontend"
+  ],
+  "eslint.options": {
+    "configFile": ".eslintrc.js"
+  },
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+  ],
+  "eslint.alwaysShowStatus": true,
+  // Stylelint
+  "stylelint.enable": true,
+  "stylelint.configBasedir": "frontend",
+  // Lint On Save
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true,
+  },
+  // Invalidate other formatters
+  "css.validate": false,
+  "scss.validate": false,
 }
