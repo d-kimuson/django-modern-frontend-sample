@@ -66,6 +66,15 @@ const devConfig = merge(baseConfig, {
     watchOptions: {
       ignored: /node_modules/
     },
+
+    watchContentBase: true,
+    contentBase: [
+      path.resolve(__dirname, 'templates'),
+      path.resolve(__dirname, 'static'),
+    ],
+    proxy: {
+      '/': 'http://localhost:8000',
+    },
   },
 });
 
