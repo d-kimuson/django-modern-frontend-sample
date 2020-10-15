@@ -1,3 +1,5 @@
+{% load render_bundle from webpack_loader %}
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -5,6 +7,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% render_bundle 'vendor' 'css' %}
+  {% render_bundle 'base' 'css' %}
   {% block external_header %}
   {% endblock %}
   <title>{% block title %}{% endblock %}</title>
@@ -12,6 +16,8 @@
 
 <body>
   {% block content %}{% endblock %}
+  {% render_bundle 'vendor' 'js' %}
+  {% render_bundle 'base' 'js' %}
   {% block external_footer %}{% endblock %}
 </body>
 <footer>
