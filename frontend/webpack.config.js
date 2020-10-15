@@ -114,7 +114,6 @@ const devConfig = merge(baseConfig, {
   },
   devServer: {
     port: 3000,
-    hot: true,
     headers: {
       "Access-Control-Allow-Origin": "*"  // For hot reload
     },

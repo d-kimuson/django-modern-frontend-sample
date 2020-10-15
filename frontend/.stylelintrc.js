@@ -4,8 +4,9 @@ module.exports = {
     "stylelint-config-standard-scss",
     "stylelint-prettier/recommended"
   ],
-  "plugins": [
+  plugins: [
     "stylelint-scss",
     "stylelint-prettier"
   ],
+  defaultSeverity: "warning"
 }
