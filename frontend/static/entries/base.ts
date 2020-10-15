@@ -1,3 +1,3 @@
 console.log(`Hello from base.js`)
 
-import "../styles/sample.scss"
+import "@styles/sample.scss"

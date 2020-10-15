@@ -5,6 +5,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 const { merge } = require('webpack-merge');
 const BundleTracker = require('webpack-bundle-tracker');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const entries = {}
 for (const fileName of require('fs').readdirSync(path.resolve(__dirname, 'static', 'entries'))) {
@@ -17,6 +18,9 @@ const baseConfig = {
     filename: 'js/[name].[hash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/static/'
+  },
+  resolve: {
+    plugins: [new TsconfigPathsPlugin()],
   },
   plugins: [
     new BundleTracker({
