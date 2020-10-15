@@ -1,0 +1,39 @@
+@use "sass:color";
+@use "sass:map";
+@use "variable" as var;
+
+.l-page-container {
+  padding: var.$header-height 0 0 0;
+  background: var.$white-weak;
+}
+
+.l-header {
+  height: var.$header-height;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: map.get(var.$z-index-weights, "lg");
+}
+
+.l-content {
+  min-height: calc(100vh - (#{var.$header-height} + #{var.$footer-height}));
+  * {
+    scroll-margin-top: var.$header-height;
+  }
+}
+
+.l-footer {
+  height: var.$footer-height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // styles
+  background: var.$black-weak;
+  color: var.$white;
+}
+
+.l-header,
+.l-content,
+.l-footer {
+  width: 100%;
+}

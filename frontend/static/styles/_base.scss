@@ -1,0 +1,7 @@
+@use "variable" as var;
+@import "~modern-css-reset";
+
+body {
+  color: var.$text-color;
+  background: var.$white-weak;
+}

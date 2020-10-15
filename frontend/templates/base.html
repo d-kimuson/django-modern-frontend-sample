@@ -14,7 +14,19 @@
 </head>
 
 <body>
-  {% block content %}{% endblock %}
+  <div class="l-page-container">
+    <header class="l-header m-theme-bg">
+      <a href='/' class="m-remove-a-decoration">
+        <h1>Welcome Django App</h1>
+      </a>
+    </header>
+    <div class="l-content">
+      {% block content %}{% endblock %}
+    </div>
+    <footer class="l-footer">
+      This site is produced by Django!
+    </footer>
+  </div>
   {% render_bundle 'vendor' 'js' %}
   {% render_bundle 'base' 'js' %}
   {% block external_footer %}{% endblock %}

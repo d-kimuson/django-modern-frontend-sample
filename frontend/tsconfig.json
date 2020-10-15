@@ -1,23 +1,34 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "es2017",
     "module": "esnext",
+    "moduleResolution": "node",
     "lib": [
-      "es2015",
+      "es2017",
       "dom"
     ],
-    "baseUrl": "./",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "rootDir": "./static",
+    "baseUrl": "static",
     "paths": {
       "@entries/*": [
-        "./static/scripts/*"
+        "entries/*"
       ],
       "@scripts/*": [
-        "./static/scripts/*"
+        "scripts/*"
       ],
       "@styles/*": [
-        "./static/styles/*"
+        "styles/*"
       ],
     },
     "strict": true,
-  }
+  },
+  "include": [
+    "./static/**/*",
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+  ]
 }

@@ -5,7 +5,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 const { merge } = require('webpack-merge');
 const BundleTracker = require('webpack-bundle-tracker');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
 
 const entries = {}
 for (const fileName of require('fs').readdirSync(path.resolve(__dirname, 'static', 'entries'))) {
@@ -20,7 +20,11 @@ const baseConfig = {
     publicPath: '/static/'
   },
   resolve: {
-    plugins: [new TsconfigPathsPlugin()],
+    modules: [path.resolve(__dirname, 'node_modules')],
+    extensions: ['.js', '.ts', '.css', '.scss'],
+    plugins: [new TsconfigPathsPlugin({
+      configFile: path.resolve(__dirname, 'tsconfig.json'),
+    })],
   },
   plugins: [
     new BundleTracker({
@@ -149,6 +153,5 @@ const productConfig = merge(baseConfig, {
 })
 
 module.exports = (env, options) => {
-  const isProduction = options.mode === 'production'
-  return isProduction ? productConfig : devConfig
+  return options.mode === 'production' ? productConfig : devConfig
 }

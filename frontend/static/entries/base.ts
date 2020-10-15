@@ -1,3 +1,3 @@
-console.log(`Hello from base.js`)
+import "@styles/index.scss"
 
-import "@styles/sample.scss"
+console.log(`Hello from base.js`)

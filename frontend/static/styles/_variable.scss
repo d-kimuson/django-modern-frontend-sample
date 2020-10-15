@@ -1,0 +1,26 @@
+@use "sass:color";
+// color
+$black: #303030 !default;
+$black-weak: #707070 !default;
+$white: #fafafa !default;
+$white-weak: #eaedf2 !default;
+$green: #64dd17 !default;
+$blue: #4554df !default;
+// specific color
+$text-color: $black !default;
+$link-color: $green !default;
+$success-color: $green !default;
+$theme-color: $blue !default;
+$theme-text-color: #fff;
+// layout
+$header-height: 100px !default;
+$footer-height: 150px !default;
+// z-index
+// Usage: `@use "sass:map";` & `map.get($z-index-weights, "md")`
+$z-index-weights: (
+  "sm": 10,
+  "md": 20,
+  "lg": 30,
+  "xl": 40,
+  "infty": 9999,
+) !default;
