@@ -9,7 +9,7 @@ sample of using django with webpack by
 
 ``` bash
 $ cd backend && pipenv install --dev && pipenv run python manage.py migrate && pipenv run start
-$ cd fronted && yarn install && yarn dev
+$ cd frontend && yarn install && yarn dev
 ```
 
 Go To Dev Server: http://localhost:3000
